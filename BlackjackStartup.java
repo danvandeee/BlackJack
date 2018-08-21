@@ -79,11 +79,11 @@ public class BlackjackStartup {
 				isPlaying = false;
 			}
 			
-			System.out.println("spel is gestopt");
 			
 			
-		}
-		
+			
+		} // end while isplaying
+		System.out.println("spel is gestopt");
 		
 		
 		
