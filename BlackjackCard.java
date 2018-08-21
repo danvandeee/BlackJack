@@ -4,6 +4,7 @@ public class BlackjackCard {
 
 	private String vorm;
 	private String getalOfPlaat;
+	private int puntenWaard;
 	
 	
 	public BlackjackCard (String vormpie, String getalofplaatcreate) {
