@@ -75,11 +75,14 @@ public class BlackjackStartup {
 		gepaktekaartnummer = 0;
 		System.out.println("het spel is begonnen!");
 		UserInput userinput = new UserInput();
+		getaCard();
+		getaCard();
+		
 		while (isPlaying) {
-			
+			System.out.println("typ 'k' voor nieuwe kaart, 'q' om te stoppen en 'p' om te passen");
 			String input = userinput.getInput();
 			System.out.println(input);
-			
+			try {
 			if (input.equals("k")) {  //kaart vragen
 				isPlaying = getaCard();
 				
@@ -90,6 +93,12 @@ public class BlackjackStartup {
 				isPlaying = false;
 			} //end if en else statements
 			
+		} catch (NullPointerException ex) {
+			System.out.println("geen geldige input!");
+			continue;
+		}
+			
+			
 		} // end while isplayingit
 		boolean wantToStop = false;
 		while (!wantToStop) {
@@ -97,6 +106,7 @@ public class BlackjackStartup {
 		String input = userinput.getInput();
 		 if (input.equals("y")) {  //kaart vragen
 			wantToStop = true;
+			resetAasPunten();      //nodig zodat de asen weer 11 punten zijn
 			shuffleCards();
 			startPlaying();
 		} else if (input.equals("n")) {
@@ -126,7 +136,7 @@ public class BlackjackStartup {
 		
 		if (totalPoints > 21) {
 			for (BlackjackCard kaart : jeHand) {
-				if (kaart.isAas == true) {
+				if (kaart.isAas == true && kaart.getPuntenWaard() != 1) {
 				kaart.setPuntenWaard(1);
 				break;
 				} //end if
@@ -185,6 +195,18 @@ public class BlackjackStartup {
 			
 			totalPoints += kaarten.getPuntenWaard();
 		} //end for loop
+		
+	}
+	
+	public void resetAasPunten() {
+		
+		for (BlackjackCard kaarten : jeHand) {
+			
+			if (kaarten.isAas == true && kaarten.getPuntenWaard() == 1) {
+				kaarten.setPuntenWaard(11);
+			}
+		} //end for loop
+		
 		
 	}
 	
