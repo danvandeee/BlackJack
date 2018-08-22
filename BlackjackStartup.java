@@ -25,6 +25,7 @@ public class BlackjackStartup {
 	ArrayList<BlackjackCard> jeHand = new ArrayList<BlackjackCard>();
 	int [] kaartenDeck = new int [52];
 	int gepaktekaartnummer = 0;
+	int totalPoints = 0;
 	
 	
 	
@@ -84,7 +85,7 @@ public class BlackjackStartup {
 				
 			} else if (input.equals("p")) { //pass
 				
-			} else {   //stop met spelen
+			} else if (input.equals("q")) {   //stop met spelen
 				
 				isPlaying = false;
 			} //end if en else statements
@@ -111,7 +112,7 @@ public class BlackjackStartup {
 	} //end startPlaying();
 	
 	private boolean getaCard() {
-		int totalPoints = 0;
+		totalPoints = 0;
 		System.out.println("hier heb je een kaart :)");
 		deKaarten.get(gepaktekaartnummer).getGetalOfPlaat();
 		jeHand.add(deKaarten.get(gepaktekaartnummer));
@@ -122,6 +123,22 @@ public class BlackjackStartup {
 			totalPoints += kaarten.getPuntenWaard();
 		} //end for loop
 		gepaktekaartnummer++;
+		
+		if (totalPoints > 21) {
+			for (BlackjackCard kaart : jeHand) {
+				if (kaart.isAas == true) {
+				kaart.setPuntenWaard(1);
+				break;
+				} //end if
+				
+			} //end for loop
+			
+			recountTotalPoints();
+		} //end if total points >21
+		
+		
+		
+		
 		
 		System.out.println("je hebt nu " + totalPoints + " punten!");
 		
@@ -135,7 +152,7 @@ public class BlackjackStartup {
 		
 		else {
 			 for (BlackjackCard kaart : jeHand) {
-				if (kaart.isAas == true) {
+				if (kaart.isAas == true && kaart.getPuntenWaard() != 1) {
 				kaart.setPuntenWaard(1);
 				return true;
 				}
@@ -160,9 +177,18 @@ public class BlackjackStartup {
 		} //end for loop
 		
 		
+	} //end shufflecards
+		
+	public void recountTotalPoints () {
+			totalPoints = 0;
+		for (BlackjackCard kaarten : jeHand) {
+			
+			totalPoints += kaarten.getPuntenWaard();
+		} //end for loop
+		
 	}
-		
-		
+	
+	
 		
 	} //end class
 	
