@@ -6,7 +6,7 @@ public class BlackjackCard {
 	
 	private String vorm;
 	private String getalOfPlaat;
-	public int puntenWaard;
+	private int puntenWaard;
 	public boolean isAas = false;
 	
 	
@@ -14,7 +14,7 @@ public class BlackjackCard {
 		vorm = vormpie;
 		getalOfPlaat = getalofplaatcreate;
 		
-		if (kaartnummerPerVorm < 10) {
+		if (kaartnummerPerVorm < 9) {
 			puntenWaard = ((kaartnummerPerVorm+2));		//doet het cijfer bij de juiste kaart
 												//elke loop 1 stap verder in de array
 		} else if (kaartnummerPerVorm == 12) {
@@ -35,6 +35,11 @@ public class BlackjackCard {
 	
 	public String getGetalOfPlaat () {
 		return getalOfPlaat;
+		
+	}
+	
+	public int getPuntenWaard () {
+		return puntenWaard;
 		
 	}
 	
