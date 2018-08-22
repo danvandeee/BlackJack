@@ -7,7 +7,7 @@ import java.util.Collections;
 //maak een blackjack spel
 
 //Technische Strategie
-//print de totaalpunten
+//fix de asen, als er boven de 21 punten zijn!
 
 //Coderen
 
@@ -129,15 +129,21 @@ public class BlackjackStartup {
 		gepaktekaartnummer++;
 		System.out.println("je hebt nu " + totalPoints + " punten!");
 		
-		if (totalPoints <22) {
-			return true;
-		} else if (totalPoints == 21) {
+		  if (totalPoints == 21) {
 			System.out.println("lekker dan, je hebt 21 en hebt deze ronde gewonnen!");	
 			System.out.println("het spel word nu afgesloten");
 			return false;
-		}
+		} else if (totalPoints <22) {
+				return true;
+			}
 		
 		else {
+			 for (BlackjackCard kaart : jeHand) {
+				if (kaart.isAas == true) {
+				kaart.setPuntenWaard(1);
+				return true;
+				}
+			}
 			
 			System.out.println("oei je hebt er meer dan 21, je hebt verloren!");
 			return false;
