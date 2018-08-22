@@ -3,6 +3,17 @@ package blackjack;
 import java.util.ArrayList;
 import java.util.Collections;
  //ook test voor github
+//// Functionele doelstelling 
+//maak een blackjack spel
+
+//Technische Strategie
+//print de totaalpunten
+
+//Coderen
+
+
+
+
 public class BlackjackStartup {
 
 	String [] vormen = {"harten", "ruiten", "klaver", "schoppen"};
@@ -38,7 +49,7 @@ public class BlackjackStartup {
 				deKaarten.add(kaartje);
 				kaartNummer++;
 				kaartnummerPerVorm++;
-				System.out.println("kaart nummer " + kaartNummer + " is " + kaartje.getVorm() + kaartje.getGetalOfPlaat());
+				System.out.println("kaart nummer " + kaartNummer + " is " + kaartje.getVorm() + kaartje.getGetalOfPlaat() + " en is waard " + kaartje.getPuntenWaard());
 				
 			} //end for each cijfersenplaatjes
 			
@@ -65,7 +76,7 @@ public class BlackjackStartup {
 		
 	public void startPlaying () {
 		Boolean isPlaying = true;
-		int points = 0;
+		jeHand.clear();
 		gepaktekaartnummer = 0;
 		System.out.println("het spel is begonnen!");
 		UserInput userinput = new UserInput();
@@ -75,36 +86,63 @@ public class BlackjackStartup {
 			System.out.println(input);
 			
 			if (input.equals("k")) {  //kaart vragen
-				getaCard();
+				isPlaying = getaCard();
 				
 			} else if (input.equals("p")) { //pass
 				
 			} else {   //stop met spelen
 				
 				isPlaying = false;
-			}
-			
-			
-			
+			} //end if en else statements
 			
 		} // end while isplayingit
-		System.out.println("spel is gestopt");
-		
-		
+		boolean wantToStop = false;
+		while (!wantToStop) {
+		System.out.println("wil je opnieuw spelen? y/n");
+		String input = userinput.getInput();
+		 if (input.equals("y")) {  //kaart vragen
+			wantToStop = true;
+			startPlaying();
+		} else if (input.equals("n")) {
+			wantToStop = true;
+			
+		} //end else if
+		 
+		 else {
+			
+		} //end else
+		} //end while loop (wantToStop)
 		
 	} //end startPlaying();
 	
-	private void getaCard() {
+	private boolean getaCard() {
+		int totalPoints = 0;
 		System.out.println("hier heb je een kaart :)");
 		deKaarten.get(gepaktekaartnummer).getGetalOfPlaat();
 		jeHand.add(deKaarten.get(gepaktekaartnummer));
 		
 		System.out.println("in je hand heb je nu:");
 		for (BlackjackCard kaarten : jeHand) {
-			System.out.println(kaarten.getVorm() + kaarten.getGetalOfPlaat() + " deze is waard " + kaarten.puntenWaard);
-			
+			System.out.println(kaarten.getVorm() + kaarten.getGetalOfPlaat() + " deze is waard " + kaarten.getPuntenWaard());
+			totalPoints += kaarten.getPuntenWaard();
 		} //end for loop
 		gepaktekaartnummer++;
+		System.out.println("je hebt nu " + totalPoints + " punten!");
+		
+		if (totalPoints <22) {
+			return true;
+		} else if (totalPoints == 21) {
+			System.out.println("lekker dan, je hebt 21 en hebt deze ronde gewonnen!");	
+			System.out.println("het spel word nu afgesloten");
+			return false;
+		}
+		
+		else {
+			
+			System.out.println("oei je hebt er meer dan 21, je hebt verloren!");
+			return false;
+		}
+		
 		
 	} //end getaCard
 	
