@@ -1,8 +1,6 @@
 package blackjack;
 
 public class BlackjackCard {
-
-	//aanpassing voor testen van github
 	
 	private String vorm;
 	private String getalOfPlaat;
@@ -16,11 +14,11 @@ public class BlackjackCard {
 		
 		if (kaartnummerPerVorm < 9) {
 			puntenWaard = ((kaartnummerPerVorm+2));		//doet het cijfer bij de juiste kaart
-												//elke loop 1 stap verder in de array
-		} else if (kaartnummerPerVorm == 12) {
+												
+		} else if (kaartnummerPerVorm == 12) {          //voor het geval als de kaart een aas is
 		   puntenWaard = 11;
 		   isAas = true;
-		} else {
+		} else {  										//voor de andere plaatjes
 			
 			puntenWaard = 10;
 		}
