@@ -43,5 +43,9 @@ public class BlackjackCard {
 		
 	}
 	
+	public void setPuntenWaard (int puntenWaard) {
+		this.puntenWaard = puntenWaard;
+	}
+	
 	
 }

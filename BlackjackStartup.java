@@ -7,7 +7,8 @@ import java.util.Collections;
 //maak een blackjack spel
 
 //Technische Strategie
-//print de totaalpunten
+//fix de asen, als er boven de 21 punten zijn!
+//elke new game shuffle
 
 //Coderen
 
@@ -60,14 +61,7 @@ public class BlackjackStartup {
 		System.out.println(deKaarten.get(0).getGetalOfPlaat());
 		
 		
-		//dit stuk shuffelt de kaarten
-		
-		Collections.shuffle(deKaarten);
-		for (BlackjackCard kaart : deKaarten) {
-			System.out.println(kaart.getVorm() + kaart.getGetalOfPlaat());
-			
-		}
-		
+		shuffleCards();
 	
 		
 		startPlaying();
@@ -102,6 +96,7 @@ public class BlackjackStartup {
 		String input = userinput.getInput();
 		 if (input.equals("y")) {  //kaart vragen
 			wantToStop = true;
+			shuffleCards();
 			startPlaying();
 		} else if (input.equals("n")) {
 			wantToStop = true;
@@ -127,17 +122,24 @@ public class BlackjackStartup {
 			totalPoints += kaarten.getPuntenWaard();
 		} //end for loop
 		gepaktekaartnummer++;
+		
 		System.out.println("je hebt nu " + totalPoints + " punten!");
 		
-		if (totalPoints <22) {
-			return true;
-		} else if (totalPoints == 21) {
+		  if (totalPoints == 21) {
 			System.out.println("lekker dan, je hebt 21 en hebt deze ronde gewonnen!");	
 			System.out.println("het spel word nu afgesloten");
 			return false;
-		}
+		} else if (totalPoints <22) {
+				return true;
+			}
 		
 		else {
+			 for (BlackjackCard kaart : jeHand) {
+				if (kaart.isAas == true) {
+				kaart.setPuntenWaard(1);
+				return true;
+				}
+			}
 			
 			System.out.println("oei je hebt er meer dan 21, je hebt verloren!");
 			return false;
@@ -146,7 +148,19 @@ public class BlackjackStartup {
 		
 	} //end getaCard
 	
-	
+	public void shuffleCards () {
+		
+
+		//dit stuk shuffelt de kaarten
+		
+		Collections.shuffle(deKaarten);
+		for (BlackjackCard kaart : deKaarten) {
+			System.out.println(kaart.getVorm() + kaart.getGetalOfPlaat());
+			
+		} //end for loop
+		
+		
+	}
 		
 		
 		
