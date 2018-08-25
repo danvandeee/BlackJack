@@ -6,7 +6,7 @@ import java.util.Collections;
 //// Functionele doelstelling 
 //maak een blackjack spel
 
-//Technische Strategie
+//Technische Strategie  KIJK MARA~!!!
 
 
 //Coderen
