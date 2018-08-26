@@ -6,7 +6,7 @@ import java.util.Collections;
 //// Functionele doelstelling 
 //maak een blackjack spel
 
-//Technische Strategie  KIJK MARA~!!!
+//Technische Strategie 
 
 
 //Coderen
@@ -46,7 +46,7 @@ public class BlackjackStartup {
 				deKaarten.add(kaartje);						//elke gemaakte kaart word aan het decktoegevoegd
 				kaartNummer++;
 				kaartnummerPerVorm++;
-				System.out.println("kaart nummer " + kaartNummer + " is " + kaartje.getVorm() + kaartje.getGetalOfPlaat() + " en is waard " + kaartje.getPuntenWaard());
+				//System.out.println("kaart nummer " + kaartNummer + " is " + kaartje.getVorm() + kaartje.getGetalOfPlaat() + " en is waard " + kaartje.getPuntenWaard());  //deze code was om te kijken of alle kaarten gecreërd werden!
 				
 			} //end for each cijfersenplaatjes
 			
@@ -64,7 +64,7 @@ public class BlackjackStartup {
 		gepaktekaartnummer = 0;
 		System.out.println("het spel is begonnen!");
 		UserInput userinput = new UserInput();  //deze class regelt de user input
-		getaCard();								//eerste 2 kaaten die je altijd krijgt aan het begin
+		getaCard();								//eerste 2 kaarten die je altijd krijgt aan het begin
 		getaCard();
 		
 		while (isPlaying) {						//als het spel nog bezig is, word deze loop elke keer opnieuw gedaan
@@ -76,6 +76,14 @@ public class BlackjackStartup {
 				isPlaying = getaCard();
 				
 			} else if (input.equals("p")) { 		//pass
+				recountTotalPoints();
+				System.out.print("deze kaarten had je in je hand: ");
+				for (BlackjackCard kaartje : jeHand) {
+					System.out.print(kaartje.getVorm() + kaartje.getGetalOfPlaat() + ", ");
+				}
+				System.out.println("en deze waren in totaal " + totalPoints + " waard!");
+				
+				isPlaying = false;
 				
 			} else if (input.equals("q")) {   		//stop met spelen
 				
